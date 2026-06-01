@@ -13,7 +13,7 @@ class MailProcessor:
         self.processed_dir = processed_dir
         self.log_dir = log_dir
         self.classifier = MailClassifier(config_path)
-        with open(config_path, "r", encoding="utf-8") as file:
+        with open(config_path, "r", encoding="utf-8", errors="strict") as file:
             self.config = load(file)
         self.statistics = {}
 
