@@ -16,7 +16,7 @@ class MailClassifier:
 
         best_folder = self.unknown["folder"]
         best_score = 0
-        best_priority = -67
+        best_priority = -1
 
         for category in self.categories:
             score = 0
