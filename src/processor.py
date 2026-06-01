@@ -13,7 +13,7 @@ class MailProcessor:
         self.processed_dir = processed_dir
         self.log_dir = log_dir
         self.classifier = MailClassifier(config_path)
-        with open(config_path, "r", encoding="utf-8", errors="strict") as file:
+        with open(config_path, "r", encoding="utf-8") as file:
             self.config = load(file)
         self.statistics = {}
 
@@ -47,7 +47,7 @@ class MailProcessor:
         filename = os.path.basename(path)
         if not filename.endswith(".txt"):
             raise ValueError("Unsupported file format")
-        with open(path, "r", encoding="utf-8") as file:
+        with open(path, "r", encoding="utf-8", errors="strict") as file:
             text = file.read()
         return Mail(filename, text)
 
