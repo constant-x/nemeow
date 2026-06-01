@@ -11,3 +11,7 @@ __pycache__/
 
 # Ignore PyCharm settings
 .idea/
+
+# Ignore generated processing results
+processed/
+logs/
