@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 echo "Starting processor"
 
 if [ ! -d "inbox" ]; then
@@ -7,4 +9,5 @@ if [ ! -d "inbox" ]; then
 fi
 
 python src/main.py
+
 echo "Processing finished"
