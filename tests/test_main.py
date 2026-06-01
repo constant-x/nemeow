@@ -41,14 +41,25 @@ def test_build_parser_uses_project_root_defaults(tmp_path):
     assert args.config == str(tmp_path / "categories.json")
 
 
-def test_print_statistics_outputs_total_and_categories(capsys):
-    print_statistics({"03_access_requests": 2, "10_unknown_unclassified": 1})
+def test_print_statistics_outputs_total_and_sorted_categories(capsys):
+    print_statistics(
+        {
+            "11_info_news": 1,
+            "03_access_requests": 2,
+            "10_unknown_unclassified": 1,
+        }
+    )
 
     output = capsys.readouterr().out
     assert "Processing completed successfully" in output
-    assert "Total processed: 3" in output
-    assert "03_access_requests: 2" in output
-    assert "10_unknown_unclassified: 1" in output
+    assert "Total processed: 4" in output
+
+    lines = output.splitlines()
+    assert lines[2:] == [
+        "03_access_requests: 2",
+        "10_unknown_unclassified: 1",
+        "11_info_news: 1",
+    ]
 
 
 def test_main_processes_custom_directories(tmp_path, capsys):
