@@ -5,6 +5,7 @@ from json import load
 
 from mail import Mail
 from classifier import MailClassifier
+from visualization import save_processing_report
 
 
 class MailProcessor:
@@ -89,4 +90,5 @@ class MailProcessor:
                 self.process_file(filename)
 
         self.save_statistics()
+        save_processing_report(self.statistics, self.processed_dir)
         return self.statistics
