@@ -56,10 +56,10 @@ class MailProcessor:
         try:
             mail = self.read_mail(source_path)
             category = self.classifier.classify(mail.text)
-        except ValueError:
-            category = self.config["quarantine"]["unsupported_format"]["folder"]
         except UnicodeDecodeError:
             category = self.config["quarantine"]["decode_error"]["folder"]
+        except ValueError:
+            category = self.config["quarantine"]["unsupported_format"]["folder"]
         except Exception as error:
             category = self.config["quarantine"]["corrupted"]["folder"]
             logging.error(f"{filename}: processing error: {error}")
