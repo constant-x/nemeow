@@ -38,7 +38,7 @@ def print_statistics(statistics):
     print("Processing completed successfully")
     print(f"Total processed: {total}")
 
-    for category, count in statistics.items():
+    for category, count in sorted(statistics.items()):
         print(f"{category}: {count}")
 
 
