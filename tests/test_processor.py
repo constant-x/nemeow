@@ -128,6 +128,30 @@ def test_process_all_writes_statistics_file(tmp_path):
     assert "03_access_requests: 1" in statistics_text
 
 
+def test_process_all_writes_visual_report(tmp_path):
+    inbox = tmp_path / "inbox"
+    inbox.mkdir()
+    (inbox / "access.txt").write_text(
+        "Прошу выдать доступ к VPN для нового сотрудника",
+        encoding="utf-8",
+    )
+    processor = create_processor(tmp_path)
+
+    processor.process_all()
+
+    chart_path = tmp_path / "processed" / "statistics.png"
+    report_path = tmp_path / "processed" / "report.html"
+
+    assert chart_path.exists()
+    assert chart_path.stat().st_size > 0
+    assert report_path.exists()
+
+    report_text = report_path.read_text(encoding="utf-8")
+    assert "Mail Processing Report" in report_text
+    assert "Total processed" in report_text
+    assert "03_access_requests" in report_text
+
+
 def test_process_all_raises_when_inbox_is_missing(tmp_path):
     processor = create_processor(tmp_path)
 
