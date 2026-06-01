@@ -29,7 +29,9 @@ def save_statistics_chart(statistics, processed_dir="processed"):
     return path
 
 
-def save_html_report(statistics, processed_dir="processed", chart_filename="statistics.png"):
+def save_html_report(
+    statistics, processed_dir="processed", chart_filename="statistics.png"
+):
     os.makedirs(processed_dir, exist_ok=True)
     path = os.path.join(processed_dir, "report.html")
 
@@ -69,9 +71,7 @@ def save_processing_report(statistics, processed_dir="processed"):
 
 def _nonzero_statistics(statistics):
     return {
-        category: count
-        for category, count in sorted(statistics.items())
-        if count > 0
+        category: count for category, count in sorted(statistics.items()) if count > 0
     }
 
 
@@ -92,10 +92,13 @@ def _build_html_report(
         f"<tr><td>{html.escape(category)}</td><td>{count}</td></tr>"
         for category, count in sorted(statistics.items())
     )
-    top_items = "\n".join(
-        f"<li>{html.escape(category)}: {count}</li>"
-        for category, count in top_categories
-    ) or "<li>No processed files</li>"
+    top_items = (
+        "\n".join(
+            f"<li>{html.escape(category)}: {count}</li>"
+            for category, count in top_categories
+        )
+        or "<li>No processed files</li>"
+    )
 
     return f"""<!doctype html>
 <html lang="en">

@@ -77,7 +77,9 @@ def test_unsupported_format_goes_to_unsupported_quarantine(tmp_path):
     statistics = processor.process_all()
 
     assert statistics["91_quarantine_unsupported"] == 1
-    assert (tmp_path / "processed" / "91_quarantine_unsupported" / "image.jpeg").exists()
+    assert (
+        tmp_path / "processed" / "91_quarantine_unsupported" / "image.jpeg"
+    ).exists()
 
 
 def test_decode_error_goes_to_decode_error_quarantine(tmp_path):
@@ -89,7 +91,9 @@ def test_decode_error_goes_to_decode_error_quarantine(tmp_path):
     statistics = processor.process_all()
 
     assert statistics["93_quarantine_decode_error"] == 1
-    assert (tmp_path / "processed" / "93_quarantine_decode_error" / "broken.txt").exists()
+    assert (
+        tmp_path / "processed" / "93_quarantine_decode_error" / "broken.txt"
+    ).exists()
 
 
 def test_processing_error_goes_to_corrupted_quarantine(tmp_path, monkeypatch):

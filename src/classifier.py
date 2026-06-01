@@ -30,7 +30,9 @@ class MailClassifier:
                 if word in text:
                     score += 1
 
-            if score > best_score or (score == best_score and category["priority"] > best_priority):
+            if score > best_score or (
+                score == best_score and category["priority"] > best_priority
+            ):
                 best_score = score
                 best_priority = category["priority"]
                 best_folder = category["folder"]

@@ -9,7 +9,13 @@ from visualization import save_processing_report
 
 
 class MailProcessor:
-    def __init__(self, inbox_dir="inbox", processed_dir="processed", log_dir="logs", config_path="categories.json"):
+    def __init__(
+        self,
+        inbox_dir="inbox",
+        processed_dir="processed",
+        log_dir="logs",
+        config_path="categories.json",
+    ):
         self.inbox_dir = inbox_dir
         self.processed_dir = processed_dir
         self.log_dir = log_dir
@@ -41,7 +47,7 @@ class MailProcessor:
             level=logging.INFO,
             format="%(asctime)s - %(levelname)s - %(message)s",
             encoding="utf-8",
-            force=True
+            force=True,
         )
 
     def read_mail(self, path):
