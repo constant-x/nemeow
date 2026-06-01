@@ -68,7 +68,11 @@ def save_processing_report(statistics, processed_dir="processed"):
 
 
 def _nonzero_statistics(statistics):
-    return {category: count for category, count in statistics.items() if count > 0}
+    return {
+        category: count
+        for category, count in sorted(statistics.items())
+        if count > 0
+    }
 
 
 def _count_by_marker(statistics, marker):
