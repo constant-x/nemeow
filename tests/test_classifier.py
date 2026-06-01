@@ -16,6 +16,7 @@ def write_config(tmp_path, *, min_score=2, categories=None):
     config = {
         "min_score": min_score,
         "unknown": {"folder": "unknown"},
+        "quarantine": {"empty": {"folder": "empty"}},
         "categories": categories
         or [
             {
@@ -75,11 +76,11 @@ def test_classify_uses_priority_to_break_score_ties(tmp_path):
     assert classifier.classify("urgent request") == "high_priority"
 
 
-def test_classify_empty_text_as_unknown(tmp_path):
+def test_classify_empty_text_as_empty_quarantine(tmp_path):
     config_path = write_config(tmp_path)
     classifier = MailClassifier(config_path)
 
-    assert classifier.classify("   \n\t") == "unknown"
+    assert classifier.classify("   \n\t") == "empty"
 
 
 @pytest.mark.parametrize(
