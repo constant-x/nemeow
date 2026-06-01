@@ -12,7 +12,7 @@ class MailClassifier:
     def classify(self, text):
         text = text.lower().replace("ё", "е")
         if text.strip() == "":
-            return self.unknown["folder"]
+            return self.config["quarantine"]["empty"]["folder"]
 
         best_folder = self.unknown["folder"]
         best_score = 0
